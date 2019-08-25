@@ -8,6 +8,11 @@
                                                                             ^ Second Value       ^ First Value
   If you have SubCatID then you might need to modify my script. Mine is always 0 from what I've observed so it's hardcoded.
   Don't forget to put your username and password.
+  Also, you should use crontab -e to run the script periodically:
+  */5 * * * * python3 /path/to/bounce_yad2.py >>/path/to/yad2.log
+  I run it every 5 minutes as I actually need to bounce 1 minute later every bounce interval (if I bounced at exactly, say, 13:00:00
+    the next time will need to be at 13:00:00+THE_LAST_EXECUTION_TIME so by running every 5 minutes I guarantee at most 5 minutes of
+    being unbounced. Good enought for me).
 """
 import requests, datetime
 
