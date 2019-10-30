@@ -150,6 +150,7 @@ bindsym $mod+Control+Shift+Left move workspace to output left
 bindsym $mod+Control+Shift+Right move workspace to output right
 
 # Assign applications to workspaces
+# find out class using `xprop | grep -i 'class'`
 assign [class="Firefox"]     	$ws8
 assign [class="Gnome-terminal"] $ws2
 assign [class="jetbrains-.*"]   $ws5
