@@ -198,3 +198,6 @@ bar {
         tray_output primary
 	strip_workspace_numbers yes
 }
+
+# To make drag-n-drop and copy-paste work with vmware
+exec vmware-user-suid-wrapper
