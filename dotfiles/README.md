@@ -4,6 +4,7 @@ After installing oh-my-zsh and powerline fonts (see [setup script](https://githu
 
 ## Setup Powerline Fonts In Terminal
 Open the terminal profile settings and change the font to something "powerline-patched". I like `Noto Mono Powerline Regualr` as size 15
+
 Might need to reboot
 
 
