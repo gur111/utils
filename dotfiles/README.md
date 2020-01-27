@@ -9,8 +9,11 @@ Might need to reboot
 
 ## Change To The `agnoster` Theme
 open `~/.zshrc`:
+
 ```nano ~/.zshrc```
+
 CTRL+W -> theme -> Enter to search for the theme property (relatively at the top). Change it to:
+
 ```ZSH_THEME="agnoster"```
 
 ## Remove `user@host` From Prompt:
