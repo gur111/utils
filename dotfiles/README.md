@@ -22,7 +22,7 @@ At the bottom of the same file (`.zshrc`) add:
 To be able to CTRL+Backspace and CTRL+DEL to delete whole words, follow this.
 `nano ~/.oh-my-zsh/lib/key-bindings.zsh`
 At the bottom, add the following lines
-`# Delete whole words
+```# Delete whole words
 bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
-`
+```
