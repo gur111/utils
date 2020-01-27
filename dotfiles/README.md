@@ -9,18 +9,18 @@ Might need to reboot
 
 ## Change To The `agnoster` Theme
 open `~/.zshrc`:
-`nano ~/.zshrc`
+```nano ~/.zshrc```
 CTRL+W -> theme -> Enter to search for the theme property (relatively at the top). Change it to:
-`ZSH_THEME="agnoster"`
+```ZSH_THEME="agnoster"```
 
 ## Remove `user@host` From Prompt:
 At the bottom of the same file (`.zshrc`) add:
-`prompt_context(){}"`
+```prompt_context(){}"```
 
 
 ## Key Bindings
 To be able to CTRL+Backspace and CTRL+DEL to delete whole words, follow this.
-`nano ~/.oh-my-zsh/lib/key-bindings.zsh`
+```nano ~/.oh-my-zsh/lib/key-bindings.zsh```
 At the bottom, add the following lines
 ```# Delete whole words
 bindkey '^H' backward-kill-word
