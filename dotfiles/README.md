@@ -16,3 +16,13 @@ CTRL+W -> theme -> Enter to search for the theme property (relatively at the top
 ## Remove `user@host` from promp:
 At the bottom of the same file (`.zshrc`) add:
 `prompt_context(){}"`
+
+
+## Key bindings
+To be able to CTRL+Backspace and CTRL+DEL to delete whole words, follow this.
+`nano ~/.oh-my-zsh/lib/key-bindings.zsh`
+At the bottom, add the following lines
+`# Delete whole words
+bindkey '^H' backward-kill-word
+bindkey '^[[3;5~' kill-word
+`
