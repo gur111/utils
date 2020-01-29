@@ -155,6 +155,7 @@ assign [class="Firefox"]     	$ws8
 assign [class="Gnome-terminal"] $ws2
 assign [class="jetbrains-.*"]   $ws5
 assign [class="Gedit"]     	$ws3
+assign [class="Typora"]         $ws3
 assign [class="Nautilus"]     	$ws1
 assign [class=".*-monitor"]     $ws0
 
