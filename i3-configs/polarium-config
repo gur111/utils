@@ -29,6 +29,12 @@ font pango:monospace 8, FontAwesome 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Set background
+exec_always feh --bg-scale ~/Pictures
+
+# Run polybar
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -93,16 +99,26 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define workspaces
-set $ws1 1:
-set $ws2 2:
-set $ws3 3:
-set $ws4 4:4
-set $ws5 5:
-set $ws6 6:6
-set $ws7 7:7
-set $ws8 8:
-set $ws9 9:9
-set $ws0 10:
+set $ws1	11:
+set $ws2	12:
+set $ws3	13:
+set $ws4	14:4
+set $ws5	15:
+set $ws6	16:6
+set $ws7	17:7
+set $ws8	18:
+set $ws9	19:9
+set $ws0	10:
+set $ws10	20:10
+set $ws11	21:11
+set $ws12	22:12
+set $ws13	23:13
+set $ws14	24:14
+set $ws15	25:15
+set $ws16	26:16
+set $ws17	27:17
+set $ws18	28:18
+set $ws19	29:19
 
 # Define Monitors
 set $left_monitor "Virtual2"
@@ -110,28 +126,48 @@ set $mid_monitor "Virtual1"
 set $right_monitor "Virtual3"
 
 # Bind workspace to monitors
-workspace $ws1 output $mid_monitor
-workspace $ws2 output $mid_monitor
-workspace $ws3 output $mid_monitor
-workspace $ws4 output $mid_monitor
-workspace $ws5 output $left_monitor
-workspace $ws6 output $left_monitor
-workspace $ws7 output $left_monitor
-workspace $ws8 output $right_monitor
-workspace $ws9 output $right_monitor
-workspace $ws0 output $right_monitor
+workspace $ws1	output $mid_monitor
+workspace $ws2	output $mid_monitor
+workspace $ws3	output $mid_monitor
+workspace $ws4	output $right_monitor
+workspace $ws5	output $mid_monitor
+workspace $ws6	output $left_monitor
+workspace $ws7	output $left_monitor
+workspace $ws8	output $right_monitor
+workspace $ws9	output $right_monitor
+workspace $ws10	output $right_monitor
+workspace $ws11	output $right_monitor
+workspace $ws12	output $right_monitor
+workspace $ws13	output $right_monitor
+workspace $ws14	output $right_monitor
+workspace $ws15	output $right_monitor
+workspace $ws16	output $right_monitor
+workspace $ws17	output $right_monitor
+workspace $ws18	output $right_monitor
+workspace $ws19	output $right_monitor
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws0
+bindsym $mod+1		workspace $ws1
+bindsym $mod+2		workspace $ws2
+bindsym $mod+3		workspace $ws3
+bindsym $mod+4		workspace $ws4
+bindsym $mod+5		workspace $ws5
+bindsym $mod+6		workspace $ws6
+bindsym $mod+7		workspace $ws7
+bindsym $mod+8		workspace $ws8
+bindsym $mod+9		workspace $ws9
+bindsym $mod+0		workspace $ws0
+bindsym $mod+Escape	workspace $ws10
+bindsym $mod+F1		workspace $ws11
+bindsym $mod+F2		workspace $ws12
+bindsym $mod+F3		workspace $ws13
+bindsym $mod+F4		workspace $ws14
+bindsym $mod+F5		workspace $ws15
+bindsym $mod+F6		workspace $ws16
+bindsym $mod+F7		workspace $ws17
+bindsym $mod+F8		workspace $ws18
+bindsym $mod+F9		workspace $ws19
+
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -155,7 +191,7 @@ assign [class="Firefox"]     	$ws8
 assign [class="Gnome-terminal"] $ws2
 assign [class="jetbrains-.*"]   $ws5
 assign [class="Gedit"]     	$ws3
-assign [class="Typora"]         $ws3
+assign [class="Typora"]		$ws3
 assign [class="Nautilus"]     	$ws1
 assign [class=".*-monitor"]     $ws0
 
@@ -175,15 +211,22 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
+        #bindsym j resize shrink width 10 px or 10 ppt
+        #bindsym k resize grow height 10 px or 10 ppt
+        #bindsym l resize shrink height 10 px or 10 ppt
+        #bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        bindsym Shift+Left      resize shrink   width   50 px or 50 ppt
-        bindsym Shift+Right     resize grow     width   50 px or 50 ppt
-        bindsym Shift+Up        resize shrink   height  50 px or 50 ppt
-        bindsym Shift+Down      resize grow     height  50 px or 50 ppt
+
+	bindsym Shift+Left	resize shrink	width	50 px or 50 ppt
+	bindsym Shift+Right	resize grow	width	50 px or 50 ppt
+	bindsym Shift+Up	resize shrink	height	50 px or 50 ppt
+	bindsym Shift+Down	resize grow	height	50 px or 50 ppt
 
 
         # back to normal: Enter or Escape
@@ -206,6 +249,29 @@ mode "move" {
     bindsym Escape mode "default"
 }
 
+
+
+####   GAPS and Window
+
+#for_window [class="^.*"] border pixel 6
+#gaps inner 20
+#gaps inner 10
+
+#new_window pixel 3
+#new_float pixel 3
+
+#hide_edge_borders vertical
+
+# Color variables
+#set $unfocused_border $base05
+#set $focused_border #82ff80
+
+#               		class	border  backgr. text indicator
+#client.focused          	$base05 $base05 $base00 $base05
+#client.focused_inactive 	$base03 $base03 $base05 $base03
+#client.unfocused        	$base03 $base03 $base05 $base00
+#client.urgent 		 	$base01 $base01 $base05 $base00
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -217,9 +283,6 @@ bar {
 # To make drag-n-drop and copy-paste work with vmware
 exec vmware-user-suid-wrapper
 
-# Make terminal line prefix sensible
-exec export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
-
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound vo
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #increase sound vo
@@ -229,9 +292,8 @@ exec firefox
 exec i3-sensible-terminal
 exec sudo i3-sensible-terminal
 exec sudo pycharm-community
-exec nautilus
+#exec nautilus
 exec gedit ~/Documents/bitbucketpass.txt
 exec sudo gnome-system-monitor
 
-# Prettier terminal prompt
 exec export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
