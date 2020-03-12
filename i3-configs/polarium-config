@@ -190,6 +190,11 @@ bindsym $mod+Control+Shift+Right move workspace to output right
 assign [class="Firefox"]     	$ws8
 assign [class="Gnome-terminal"] $ws2
 assign [class="jetbrains-.*"]   $ws5
+assign [class="jetbrains-.*" title="Version*"]	$ws7
+assign [class="jetbrains-.*" title="Commit*"]	$ws7
+assign [class="jetbrains-.*" title="Terminal*"]	$ws6
+assign [class="jetbrains-.*" title="Python Console*"]$ws6
+assign [class="jetbrains-.*" title="Debug*"]	$ws6
 assign [class="Gedit"]     	$ws3
 assign [class="Typora"]		$ws3
 assign [class="Nautilus"]     	$ws1
@@ -283,6 +288,9 @@ bar {
 # To make drag-n-drop and copy-paste work with vmware
 exec vmware-user-suid-wrapper
 
+# Make terminal line prefix sensible
+exec export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
+
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound vo
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #increase sound vo
@@ -295,5 +303,3 @@ exec sudo pycharm-community
 #exec nautilus
 exec gedit ~/Documents/bitbucketpass.txt
 exec sudo gnome-system-monitor
-
-exec export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
