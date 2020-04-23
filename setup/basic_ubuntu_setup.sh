@@ -3,7 +3,7 @@
 set -e
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install curl wget git zsh
+sudo apt install curl wget git zsh fonts-font-awesome
 sudo snap install code --classic
 sudo snap install clion --classic
 wget https://www.scootersoftware.com/bcompare-4.3.4.24657_amd64.deb
