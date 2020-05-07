@@ -310,4 +310,4 @@ exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 
 
 # Hard links to utils repo
-exec_always "rm ~/.config/i3/config && ln ~/Documents/git/utils/i3-configs/polarium-config ~/.config/i3/config"
+exec_always "rm ~/.config/i3/config && ln -s ~/Documents/git/utils/i3-configs/polarium-config ~/.config/i3/config"
