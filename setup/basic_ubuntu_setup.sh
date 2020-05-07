@@ -19,3 +19,6 @@ sudo dpkg -i bcompare-4.3.4.24657_amd64.deb
 rm bcompare-4.3.4.24657_amd64.deb
 git config --global diff.tool bc3
 git config --global merge.tool bc3
+
+# Setup i3 config
+ln -s ~/Documents/git/utils/i3-configs/polarium-config ~/.config/i3/config
