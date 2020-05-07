@@ -2,8 +2,11 @@
 # Exit on error
 set -e
 
+# Add Typora repo
+sudo add-apt-repository 'deb https://typora.io/linux ./'
+
 sudo apt update && sudo apt upgrade -y
-sudo apt install curl wget git parcellite -y
+sudo apt install curl wget git parcellite typora -y
 
 # Install Google Drive Mounting thingy.
 # Auto mounting is confed in the i3 config
