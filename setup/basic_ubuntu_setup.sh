@@ -22,3 +22,4 @@ git config --global merge.tool bc3
 
 # Setup i3 config
 ln -s ~/Documents/git/utils/i3-configs/polarium-config ~/.config/i3/config
+ln -s ~/Documents/git/utils/dotfiles/.zshrc ~/.zshrc
