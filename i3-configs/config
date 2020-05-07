@@ -84,7 +84,7 @@ set $ws2	11:
 set $ws3	12:
 set $ws4	13:4
 set $ws5	14:
-set $ws6	15:6
+set $ws6	15:
 set $ws7	16:
 set $ws8	17:
 set $ws9	18:9
@@ -178,6 +178,8 @@ bindsym $mod+Control+Shift+Right move workspace to output right
 # Assign applications to workspaces
 # find out class using `xprop | grep -i 'class'`
 assign [class="Firefox"]				$ws8
+assign [class="Navigator"]				$ws8
+assign [class="zoom"]					$ws6
 assign [title="WhatsApp - Mozilla Firefox"]		$ws18
 assign [class="Gnome-terminal"]				$ws2
 assign [class="Spotify"]				$ws19
