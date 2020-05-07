@@ -3,7 +3,7 @@
 set -e
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install curl wget git zsh fonts-font-awesome i3 arandr -y
+sudo apt install curl wget git parcellite -y
 
 # Install Google Drive Mounting thingy.
 # Auto mounting is confed in the i3 config
@@ -11,15 +11,23 @@ sudo add-apt-repository ppa:alessandro-strada/ppa
 sudo apt-get update
 sudo apt-get install google-drive-ocamlfuse
 
+# Configure parcellite
+sed -i -- 's/history_key=<Ctrl><Alt>H/history_key=<Ctrl>Escape/g' ~/.config/parcellite/parcelliterc
 
+# Install IDEs
 sudo snap install code --classic
 sudo snap install clion --classic
+
+# Beyond Compare
 wget https://www.scootersoftware.com/bcompare-4.3.4.24657_amd64.deb
 sudo dpkg -i bcompare-4.3.4.24657_amd64.deb
 rm bcompare-4.3.4.24657_amd64.deb
 git config --global diff.tool bc3
 git config --global merge.tool bc3
 
-# Setup i3 config
-ln -s ~/Documents/git/utils/i3-configs/polarium-config ~/.config/i3/config
-ln -s ~/Documents/git/utils/dotfiles/.zshrc ~/.zshrc
+# Setup i3
+../i3-config/setup.sh
+
+# Setup zsh
+../zsh/setup.sh
+
