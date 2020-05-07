@@ -294,6 +294,8 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 
 # Startup programs
 exec firefox
+exec nautilus
+exec code
 exec i3-sensible-terminal
 exec sudo i3-sensible-terminal
 exec sudo pycharm-community
