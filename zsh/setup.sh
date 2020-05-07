@@ -1,4 +1,4 @@
-sudo apt install zsh fonts-powerline curl wget git -y
+sudo apt install zsh arandr fonts-font-awesome fonts-powerline curl wget git -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 mkdir -p ~/.config/fontconfig/conf.d
