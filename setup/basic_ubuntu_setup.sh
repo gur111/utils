@@ -9,7 +9,7 @@ sudo apt install curl wget git parcellite -y
 wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
 sudo add-apt-repository 'deb https://typora.io/linux ./'
 sudo apt update
-sudo apt install typora
+sudo apt install typora -y
 
 
 # Install Google Drive Mounting thingy.
