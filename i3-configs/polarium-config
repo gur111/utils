@@ -307,3 +307,4 @@ exec parcellite
 # Keyboard layouts
 exec_always "setxkbmap -layout us,il"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
+exec_always "rm ~/.config/i3/config && ln ~/Documents/git/utils/i3-configs/polarium-config ~/.config/i3/config"
