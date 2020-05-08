@@ -201,6 +201,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+s exec "systemctl suspend"
+
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -316,3 +318,4 @@ exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 # Hard links to utils repo
 exec_always "rm ~/.config/i3/config && ln -s ~/Documents/git/utils/i3-configs/config ~/.config/i3/config"
 exec_always "rm ~/.zshrc && ln -s ~/Documents/git/utils/dotfiles/.zshrc ~/.zshrc"
+
