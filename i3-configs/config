@@ -92,7 +92,7 @@ set $ws0	19:
 set $ws10	20:
 set $ws11	21:11
 set $ws12	22:12
-set $ws13	23:13
+set $ws13	23:
 set $ws14	24:
 set $ws15	25:
 set $ws16	26:16
