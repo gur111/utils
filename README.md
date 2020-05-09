@@ -3,6 +3,11 @@
 This repo is for the small utils I make to make my life easier
 
 
+# How to use
+1. Clone the repo.
+2. `cd` to `setup`
+3. Run `basic_ubuntu_setup.sh`
+
 
 # FAQ
 
