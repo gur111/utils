@@ -196,7 +196,7 @@ assign [class=".*-monitor"]				$ws0
 # Display/Resolution Settings
 assign [class="Arandr"]					$ws15
 # Pdf
-assign [class="Evince"]					$ws14
+assign [class="Evince"]					$ws13
 assign [class="lyx"]					$ws14
 
 # reload the configuration file
@@ -319,7 +319,7 @@ exec parcellite
 
 # Keyboard layouts
 exec_always "setxkbmap -layout us,il"
-exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
+exec_always "setxkbmap -option 'grp:cap_toggle'"
 
 
 # Hard links to utils repo
