@@ -321,7 +321,6 @@ exec parcellite
 exec_always "setxkbmap -layout us,il"
 exec_always "setxkbmap -option 'grp:sclk_toggle'"
 exec_always "setxkbmap -option 'grp:shift_caps_toggle'"
-exec_always "setxkbmap -option 'grp_led:caps'"
 
 
 # Hard links to utils repo
