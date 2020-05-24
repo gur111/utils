@@ -183,6 +183,7 @@ assign [class="zoom"]					$ws6
 assign [title="WhatsApp - Mozilla Firefox"]		$ws18
 assign [class="Gnome-terminal"]				$ws2
 assign [class="Spotify"]				$ws19
+assign [class="Code"]					$ws5
 assign [class="jetbrains-.*"]				$ws5
 assign [class="jetbrains-.*" title="Version.*"]		$ws7
 assign [class="jetbrains-.*" title="Commit.*"]		$ws7
