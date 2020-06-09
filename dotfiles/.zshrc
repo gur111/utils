@@ -114,5 +114,6 @@ alias rb="rebase"
 alias stash="git stash"
 alias pop="git pop"
 alias suroot="sudo -E -s"
+alias netfix="sudo ifconfig wlo1 down;sudo ifconfig wlo1 up"
 
 prompt_context(){}
