@@ -312,7 +312,7 @@ exec i3-sensible-terminal
 exec sudo i3-sensible-terminal
 exec sudo pycharm-community
 #exec nautilus
-exec ~/.screenlayout/DualMonitorTechnion.sh
+exec ~/Documents/git/utils/i3-configs/DualMonitorTechnion.sh
 exec sudo gnome-system-monitor
 exec google-drive-ocamlfuse -label Storage ~/GDriveStorage 
 exec parcellite
