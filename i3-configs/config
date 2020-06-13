@@ -316,6 +316,7 @@ exec ~/Documents/git/utils/i3-configs/DualMonitorTechnion.sh
 exec sudo gnome-system-monitor
 exec google-drive-ocamlfuse -label Storage ~/GDriveStorage 
 exec parcellite
+exec kbdd
 
 # Keyboard layouts
 exec_always "setxkbmap -layout us,il"
