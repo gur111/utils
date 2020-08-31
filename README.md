@@ -26,3 +26,6 @@ This repo is for the small utils I make to make my life easier
 ### **Q: How to disable Windows 10 web results in search?**
 
 **A:** Edit registry key `HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search` Set values to 0 for `CortanaConsent` and `BingSearchEnabled` (this one might be missing, add DWORD 32bit if so)
+
+### **Q: How to remap CapsLock on Windows 10?**
+**A:** Download SharpKeys: https://www.randyrants.com/category/sharpkeys/. 
