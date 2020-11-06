@@ -2,6 +2,9 @@
 # Exit on error
 set -e
 
+git config --global user.email "gur111telem@gmail.com"
+git config --global user.name "Gur Telem"
+
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl wget git parcellite flameshot kbdd -y
 
