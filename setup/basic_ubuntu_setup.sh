@@ -41,3 +41,7 @@ git config --global merge.tool bc3
 # Setup zsh
 ../zsh/setup.sh
 
+# Setup Nautilus typeahead
+sudo add-apt-repository ppa:lubomir-brindza/nautilus-typeahead
+sudo apt upgrade
+nautilus -q
