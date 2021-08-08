@@ -105,15 +105,42 @@ alias ex0="cd ~/Documents/git/MtmEx0"
 alias ll="ls -lh --color=auto"
 alias llr="ll -R"
 alias yolo="git push -f"
-alias push="git push"
-alias pull="git pull"
-alias checkout="git checkout"
-alias co="checkout"
-alias rebase="git rebase"
-alias rb="rebase"
-alias stash="git stash"
-alias pop="git pop"
 alias suroot="sudo -E -s"
 alias netfix="sudo ifconfig wlo1 down;sudo ifconfig wlo1 up"
+
+alias zshconfig="nano ~/.zshrc && source ~/.zshrc"
+alias ohmyzsh="nano ~/.oh-my-zsh"
+alias .=source
+alias gpush='git push'
+alias gpull='git pull'
+alias gstash='git stash'
+alias gpop='git stash pop'
+alias gcheckout='git checkout'
+alias gco='git checkout'
+alias gcommit='git commit'
+alias gcm='git commit -m'
+alias gstatus='git status'
+alias gfetch='git fetch'
+alias grm='git rm'
+alias gremote='git remote'
+alias gdiff='git diff'
+alias grevert='git revert'
+alias gstatus='git status'
+alias grebase='git rebase'
+alias grb='git rebase'
+alias grsh='git reset --hard'
+
+alias occ="gcc -framework Foundation"
+
+bindkey -e
+bindkey '^H' backward-kill-word
+#bindkey '^[[3~' kill-word # DON'T TURN THIS ON,
+bindkey '^[[3;5~' kill-word
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+export PATH="/usr/local/sbin:$PATH"
+
+
 
 prompt_context(){}
