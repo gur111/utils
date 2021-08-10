@@ -72,6 +72,8 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+HISTSIZE=300000
+SAVEHIST=300000
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -80,11 +82,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nano'
+else
+  export EDITOR='nano'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -101,8 +103,7 @@ source $ZSH/oh-my-zsh.sh
 export csl="gurt@csl3.cs.technion.ac.il"
 
 alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
-alias ex0="cd ~/Documents/git/MtmEx0"
-alias ll="ls -lh --color=auto"
+alias ll="ls -lhG --color=auto"
 alias llr="ll -R"
 alias yolo="git push -f"
 alias suroot="sudo -E -s"
@@ -129,9 +130,29 @@ alias gstatus='git status'
 alias grebase='git rebase'
 alias grb='git rebase'
 alias grsh='git reset --hard'
+alias gadd='git add'
+alias gap='git add -p'
+# For emergencies
+alias rockets='git checkout gurt/rockets && git add . && git commit -m "Taking shelter" && git push -f'
+alias emergency='rockets'
+alias code-red='rockets'
 
+alias pgit='cd ~/pgit'
 alias occ="gcc -framework Foundation"
+alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
+alias bats="/SWE/CoreOS/Tools/ops/bats build"
+alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
+alias python3="/usr/local/bin/python3"
+alias l="less"
 
+fixKnfs () {
+	kdestroy -A
+	appleconnect signOut --realm=APPLECONNECT.APPLE.COM —account=gtelem
+	appleconnect authenticate --realm=APPLECONNECT.APPLE.COM —account=gtelem
+	kinit --renewable gtelem@APPLECONNECT.APPLE.COM
+	sudo automount -vc
+	sudo killall opendirectoryd
+}
 bindkey -e
 bindkey '^H' backward-kill-word
 #bindkey '^[[3~' kill-word # DON'T TURN THIS ON,
@@ -140,7 +161,20 @@ bindkey '^[[3;5~' kill-word
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 export PATH="/usr/local/sbin:$PATH"
+export PATH=/usr/local/smlnj/bin:"$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 
+ramdisk() {
+	echo "Creating ramdisk"
+	if [ -n "$1" ] && [ -n "$2" ]
+	then
+		diskutil erasevolume HFS+ "$2" `hdiutil attach -nomount ram://$((2048*$1))`
+	else
+		echo "Usage: ramdisk SIZE_IN_MB DISK_NAME"
+	fi
+}
 
 prompt_context(){}
