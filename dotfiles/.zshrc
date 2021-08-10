@@ -103,7 +103,7 @@ fi
 export csl="gurt@csl3.cs.technion.ac.il"
 
 alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
-alias ll="ls -lhG --color=auto"
+alias ll="ls -lhG"
 alias llr="ll -R"
 alias yolo="git push -f"
 alias suroot="sudo -E -s"
