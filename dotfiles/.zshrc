@@ -149,7 +149,8 @@ alias bats="/SWE/CoreOS/Tools/ops/bats build"
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
 alias python3="/usr/local/bin/python3"
 alias l="less"
-rmbc='rm **/*_(BACKUP|BASE|LOCAL|REMOTE)_* **/*.orig'
+alias ibrew="arch -x86_64 /opt/brew/bin/brew"
+alias rmbc='rm **/*_(BACKUP|BASE|LOCAL|REMOTE)_* **/*.orig'
 
 fixKnfs () {
 	kdestroy -A
