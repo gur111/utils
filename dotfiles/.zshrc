@@ -42,7 +42,7 @@ ZSH_THEME="agnoster"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -74,6 +74,7 @@ source $ZSH/oh-my-zsh.sh
 
 HISTSIZE=300000
 SAVEHIST=300000
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -97,18 +98,13 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 export csl="gurt@csl3.cs.technion.ac.il"
-
 alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
 alias ll="ls -lhG"
 alias llr="ll -R"
 alias yolo="git push -f"
 alias suroot="sudo -E -s"
 alias netfix="sudo ifconfig wlo1 down;sudo ifconfig wlo1 up"
-
 alias zshconfig="nano ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
@@ -129,9 +125,16 @@ alias grevert='git revert'
 alias gstatus='git status'
 alias grebase='git rebase'
 alias grb='git rebase'
+alias grbc='git rebase --continue'
+alias grba='git rebase --abort'
+alias grbi='git rebase -i'
 alias grsh='git reset --hard'
 alias gadd='git add'
 alias gap='git add -p'
+gsq() {
+	git rebase -i HEAD~$@
+}
+
 # For emergencies
 alias rockets='git checkout gurt/rockets && git add . && git commit -m "Taking shelter" && git push -f'
 alias emergency='rockets'
@@ -141,6 +144,7 @@ alias pgit='cd ~/pgit'
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
 alias bats="/SWE/CoreOS/Tools/ops/bats build"
+
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
 alias python3="/usr/local/bin/python3"
 alias l="less"
