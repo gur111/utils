@@ -141,6 +141,7 @@ alias emergency='rockets'
 alias code-red='rockets'
 
 alias pgit='cd ~/pgit'
+
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
 alias bats="/SWE/CoreOS/Tools/ops/bats build"
@@ -149,7 +150,6 @@ alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets
 alias python3="/usr/local/bin/python3"
 alias l="less"
 rmbc='rm **/*_(BACKUP|BASE|LOCAL|REMOTE)_* **/*.orig'
-
 
 fixKnfs () {
 	kdestroy -A
