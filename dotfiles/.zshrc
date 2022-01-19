@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,8 @@ export ZSH="/home/gur/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -23,14 +31,13 @@ ZSH_THEME="agnoster"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -45,6 +52,9 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -99,12 +109,15 @@ fi
 #
 # Example aliases
 export csl="gurt@csl3.cs.technion.ac.il"
+
 alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
 alias ll="ls -lhG"
 alias llr="ll -R"
 alias yolo="git push -f"
 alias suroot="sudo -E -s"
 alias netfix="sudo ifconfig wlo1 down;sudo ifconfig wlo1 up"
+alias ip="ifconfig | grep -e '10\.' -e '192\.'"
+
 alias zshconfig="nano ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
@@ -115,6 +128,7 @@ alias gpop='git stash pop'
 alias gcheckout='git checkout'
 alias gco='git checkout'
 alias gcommit='git commit'
+alias gca='git commit --amend'
 alias gcm='git commit -m'
 alias gstatus='git status'
 alias gfetch='git fetch'
@@ -131,6 +145,7 @@ alias grbi='git rebase -i'
 alias grsh='git reset --hard'
 alias gadd='git add'
 alias gap='git add -p'
+alias psrfetch='find $HOME/git/psr-tools -type d -depth 1 -exec git --git-dir={}/.git fetch \;'
 gsq() {
 	git rebase -i HEAD~$@
 }
@@ -141,16 +156,19 @@ alias emergency='rockets'
 alias code-red='rockets'
 
 alias pgit='cd ~/pgit'
+alias psr='cd ~/git/psr-tools/'
+alias ptb='cd ~/git/psr-tools/PurpleToolbox'
 
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
 alias bats="/SWE/CoreOS/Tools/ops/bats build"
-
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
+alias ihd="sudo green-restore --knox --install-tools"
 alias python3="/usr/local/bin/python3"
 alias l="less"
-alias ibrew="arch -x86_64 /opt/brew/bin/brew"
-alias rmbc='rm **/*_(BACKUP|BASE|LOCAL|REMOTE)_* **/*.orig'
+alias ibrew="arch -x86_64 /opt/homebrew/bin/brew"
+alias rmbc="rm -f**/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)"
+
 
 fixKnfs () {
 	kdestroy -A
@@ -189,3 +207,7 @@ prompt_context(){}
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/opt/homebrew/bin:$PATH"
