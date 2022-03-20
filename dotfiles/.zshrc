@@ -1,5 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/gtelem/.oh-my-zsh"
@@ -8,7 +15,8 @@ export ZSH="/Users/gtelem/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -105,16 +113,20 @@ alias llr="ll -R"
 alias yolo="git push -f"
 alias suroot="sudo -E -s"
 alias netfix="sudo ifconfig wlo1 down;sudo ifconfig wlo1 up"
+alias zshreload='source ~/.zshrc'
 alias zshconfig="nano ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
 alias gpush='git push'
+alias gps='git push'
 alias gpull='git pull'
+alias gpl='git pull'
 alias gstash='git stash'
 alias gpop='git stash pop'
 alias gcheckout='git checkout'
 alias gco='git checkout'
 alias gcommit='git commit'
+alias gca='git commit --amend'
 alias gcm='git commit -m'
 alias gstatus='git status'
 alias gfetch='git fetch'
@@ -131,6 +143,19 @@ alias grbi='git rebase -i'
 alias grsh='git reset --hard'
 alias gadd='git add'
 alias gap='git add -p'
+alias psrfetch='find $HOME/git/psr-tools -type d -depth 1 -exec git --git-dir={}/.git fetch \;'
+alias sydro='gco rel/Sydro'
+alias starskyf='gco rel/StarskyF'
+
+gcob() {
+	git checkout -b eng/PR-$@
+	git push --set-upstream origin eng/PR-$@
+}
+
+gcr() {
+	git checkout eng/PR-$@
+}
+
 gsq() {
 	git rebase -i HEAD~$@
 }
@@ -141,16 +166,19 @@ alias emergency='rockets'
 alias code-red='rockets'
 
 alias pgit='cd ~/pgit'
+alias ptb='cd ~/git/psr-tools/PurpleToolbox'
 
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
 alias bats="/SWE/CoreOS/Tools/ops/bats build"
 
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
+alias ihd="sudo green-restore --knox --install-tools"
 alias python3="/usr/local/bin/python3"
 alias l="less"
 alias ibrew="arch -x86_64 /opt/brew/bin/brew"
-alias rmbc='rm **/*_(BACKUP|BASE|LOCAL|REMOTE)_* **/*.orig'
+alias rmbc='rm -f **/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)'
+alias psr='cd ~/git/psr-tools/'
 
 fixKnfs () {
 	kdestroy -A
@@ -189,3 +217,6 @@ prompt_context(){}
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
