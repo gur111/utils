@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/Library/Python/3.8/bin:$HOME/Library/Android/sdk/platform-tools:$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/gtelem/.oh-my-zsh"
@@ -133,6 +133,7 @@ alias gfetch='git fetch'
 alias grm='git rm'
 alias gremote='git remote'
 alias gdiff='git diff'
+alias gmt='git mergetool'
 alias grevert='git revert'
 alias gstatus='git status'
 alias grebase='git rebase'
@@ -150,6 +151,8 @@ alias starskyf='gco rel/StarskyF'
 gcob() {
 	git checkout -b eng/PR-$@
 	git push --set-upstream origin eng/PR-$@
+	# Add a gco command to the ZSH history so we can easily checkout to that branch later
+	print -s gco eng/PR-$@
 }
 
 gcr() {
@@ -176,9 +179,14 @@ alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets
 alias ihd="sudo green-restore --knox --install-tools"
 alias python3="/usr/local/bin/python3"
 alias l="less"
-alias ibrew="arch -x86_64 /opt/brew/bin/brew"
-alias rmbc='rm -f **/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)'
 alias psr='cd ~/git/psr-tools/'
+alias ibrew="arch -x86_64 /opt/homebrew/bin/brew"
+alias rmbc="rm -f **/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)"
+
+# Android and ADB stuff
+
+alias set-install-cert-check='adb shell settings put global verifier_verify_adb_installs'
+
 
 fixKnfs () {
 	kdestroy -A
@@ -188,6 +196,26 @@ fixKnfs () {
 	sudo automount -vc
 	sudo killall opendirectoryd
 }
+
+psrgco() {
+	echo "Checking out psr branches"
+	repos=(PurpleRestore MobileDevice libauthinstall libFDR PurpleToolbox)
+	orig_path=$(pwd)
+
+	if [ -n "$1" ]
+	then
+		for t in ${repos[@]}; do
+			echo "Checking out $t to $1"
+			cd "/Users/$(whoami)/git/psr-tools/$t/"
+			git checkout $1 > /dev/null
+		done
+		cd "$orig_path"
+	else
+		echo "Usage: psrgco BRANCH"
+	fi
+}
+
+
 bindkey -e
 bindkey '^H' backward-kill-word
 #bindkey '^[[3~' kill-word # DON'T TURN THIS ON,
