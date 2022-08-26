@@ -110,6 +110,7 @@ export csl="gurt@csl3.cs.technion.ac.il"
 alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
 alias bison="/opt/homebrew/opt/bison/bin/bison"
 alias vact="source ./venv/bin/activate"
+alias lli="/opt/homebrew/opt/llvm/bin/lli"
 alias ll="ls -lhG"
 alias llr="ll -R"
 alias yolo="git push -f"
@@ -185,6 +186,8 @@ alias code-red='rockets'
 
 alias pgit='cd ~/pgit'
 alias ptb='cd ~/git/psr-tools/PurpleToolbox'
+alias mdv='cd ~/git/psr-tools/MobileDevice'
+alias lai='cd ~/git/psr-tools/libauthinstall'
 
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
@@ -195,6 +198,7 @@ alias ihd="sudo green-restore --knox --install-tools"
 alias python3="/usr/local/bin/python3"
 alias l="less"
 alias psr='cd ~/git/psr-tools/'
+alias ota='cd ~/git/iosota/'
 alias ibrew="arch -x86_64 /opt/homebrew/bin/brew"
 alias rmbc="rm -f **/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)"
 alias y='echo "You are too tired. Go to sleep. If you say \"yes\" to everything, what does yes even mean???....."'
@@ -245,6 +249,7 @@ export PATH=/usr/local/smlnj/bin:"$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
+export PATH="/Applications/XcodeDb.app/Contents/Developer/Platforms/MacOSX.platform/usr/local/bin:$PATH"
 export PATH="$PATH:/opt"
 
 ramdisk() {
@@ -260,8 +265,11 @@ ramdisk() {
 prompt_context(){}
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source $(brew --prefix nvm)/nvm.sh
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
