@@ -108,6 +108,8 @@ fi
 # Example aliases
 export csl="gurt@csl3.cs.technion.ac.il"
 alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
+alias bison="/opt/homebrew/opt/bison/bin/bison"
+alias vact="source ./venv/bin/activate"
 alias ll="ls -lhG"
 alias llr="ll -R"
 alias yolo="git push -f"
@@ -117,6 +119,7 @@ alias zshreload='source ~/.zshrc'
 alias zshconfig="nano ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
+# NOT WORKING: alias gjoke=curl -s https://raw.githubusercontent.com/EugeneKay/git-jokes/lulz/Jokes.txt | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'
 alias gpush='git push'
 alias gps='git push'
 alias gpull='git pull'
@@ -148,11 +151,23 @@ alias psrfetch='find $HOME/git/psr-tools -type d -depth 1 -exec git --git-dir={}
 alias sydro='gco rel/Sydro'
 alias starskyf='gco rel/StarskyF'
 
+# Git Checkout Radar
+gcr() {
+	git checkout eng/PR-$@
+}
+
 gcob() {
 	git checkout -b eng/PR-$@
 	git push --set-upstream origin eng/PR-$@
 	# Add a gco command to the ZSH history so we can easily checkout to that branch later
 	print -s gco eng/PR-$@
+}
+
+gnb() {
+	git checkout -b $@
+	git push --set-upstream origin $@
+	# Add a gco command to the ZSH history so we can easily checkout to that branch later
+	print -s gco $@
 }
 
 gcr() {
@@ -173,7 +188,7 @@ alias ptb='cd ~/git/psr-tools/PurpleToolbox'
 
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
-alias bats="/SWE/CoreOS/Tools/ops/bats build"
+alias bats="/AppleInternal/Applications/Scripts/bats build"
 
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
 alias ihd="sudo green-restore --knox --install-tools"
@@ -182,6 +197,8 @@ alias l="less"
 alias psr='cd ~/git/psr-tools/'
 alias ibrew="arch -x86_64 /opt/homebrew/bin/brew"
 alias rmbc="rm -f **/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)"
+alias y='echo "You are too tired. Go to sleep. If you say \"yes\" to everything, what does yes even mean???....."'
+
 
 # Android and ADB stuff
 
@@ -248,3 +265,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+
+# Tmp aliases
