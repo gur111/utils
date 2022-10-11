@@ -186,8 +186,36 @@ alias code-red='rockets'
 
 alias pgit='cd ~/pgit'
 alias ptb='cd ~/git/psr-tools/PurpleToolbox'
+alias msu='cd ~/git/psr-tools/MobileSoftwareUpdate'
 alias mdv='cd ~/git/psr-tools/MobileDevice'
 alias lai='cd ~/git/psr-tools/libauthinstall'
+alias dptb='cd ~/git/dPsr-tools/PurpleToolbox'
+alias dmsu='cd ~/git/dPsr-tools/MobileSoftwareUpdate'
+alias dmdv='cd ~/git/dPsr-tools/MobileDevice'
+alias dlai='cd ~/git/dPsr-tools/libauthinstall'
+
+# NeRD stuff
+NERD_LOG_CMD="log stream --info --debug --filter 'process:\"nerd\"' --filter 'process:\"mobileassetd\"' --filter 'process:\"softwareupdated\"' --filter 'process:\"UpdateBrainService\"' | tee nerd.log"
+alias relayca='tcprelay --locationid 8414100 --portoffset 14000 ssh'
+alias relayb='tcprelay --locationid 8411100 --portoffset 13000 ssh'
+alias sshca1='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p14022'
+alias sshb='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p13022'
+alias nerdsend='mkdir -p ./usr/libexec/ && cp nerd ./usr/libexec/ && find ./usr/ | grep nerd | cpio -o --file ./nerd.cpgz -d && scp -o NoHostAuthenticationForLocalhost=yes nerd.cpgz root@appletv:~/. && ssh -o NoHostAuthenticationForLocalhost=yes root@appletv "darwinup install nerd.cpgz && killall -30 nerd && $NERD_LOG_CMD"'
+alias cpnerd='echo "nvram -s boot-command=recover ; nvram -s auto-boot=true ; nvram -s ota-outcome=fail ;nvram -p ; reboot" | pbcopy'
+nerdboot() {
+        ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@$@ "nvram -s boot-command=recover ; nvram -s auto-boot=true ; nvram -s ota-outcome=fail ;nvram -p ; reboot"
+}
+sshcan() {
+echo "set timeout 5 \
+set cmd [lrange $argv 1 end] \
+set password [lindex $argv 0] \
+eval spawn $cmd \
+expect \"password:\" \
+send \"$password\\r\" \
+interact" > /usr/bin/expect
+}
+
+alias nerdfilter="ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@appletv \"log stream --info --debug --filter 'process:nerd' --filter 'process:mobileassetd' --filter 'process:softwareupdated' --filter 'process:UpdateBrainService'\""
 
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
