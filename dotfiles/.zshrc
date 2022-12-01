@@ -126,6 +126,9 @@ alias gps='git push'
 alias gpull='git pull'
 alias gpl='git pull'
 alias gstash='git stash'
+alias gss='git stash save'
+alias gsshow='git stash show'
+alias gspush='git stash push'
 alias gpop='git stash pop'
 alias gcheckout='git checkout'
 alias gco='git checkout'
@@ -152,6 +155,8 @@ alias psrfetch='find $HOME/git/psr-tools -type d -depth 1 -exec git --git-dir={}
 alias sydro='gco rel/Sydro'
 alias starskyf='gco rel/StarskyF'
 
+alias dls='cd ~/Downloads'
+alias xpe='xpath -e'
 # Git Checkout Radar
 gcr() {
 	git checkout eng/PR-$@
@@ -187,12 +192,15 @@ alias code-red='rockets'
 alias pgit='cd ~/pgit'
 alias ptb='cd ~/git/psr-tools/PurpleToolbox'
 alias msu='cd ~/git/psr-tools/MobileSoftwareUpdate'
+alias fdr='cd ~/git/psr-tools/libFDR'
 alias mdv='cd ~/git/psr-tools/MobileDevice'
 alias lai='cd ~/git/psr-tools/libauthinstall'
+alias las='cd ~/git/psr-tools/libauthinstall'
 alias dptb='cd ~/git/dPsr-tools/PurpleToolbox'
 alias dmsu='cd ~/git/dPsr-tools/MobileSoftwareUpdate'
 alias dmdv='cd ~/git/dPsr-tools/MobileDevice'
 alias dlai='cd ~/git/dPsr-tools/libauthinstall'
+alias dlas='cd ~/git/dPsr-tools/libauthinstall'
 
 # NeRD stuff
 NERD_LOG_CMD="log stream --info --debug --filter 'process:\"nerd\"' --filter 'process:\"mobileassetd\"' --filter 'process:\"softwareupdated\"' --filter 'process:\"UpdateBrainService\"' | tee nerd.log"
@@ -204,6 +212,10 @@ alias nerdsend='mkdir -p ./usr/libexec/ && cp nerd ./usr/libexec/ && find ./usr/
 alias cpnerd='echo "nvram -s boot-command=recover ; nvram -s auto-boot=true ; nvram -s ota-outcome=fail ;nvram -p ; reboot" | pbcopy'
 nerdboot() {
         ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@$@ "nvram -s boot-command=recover ; nvram -s auto-boot=true ; nvram -s ota-outcome=fail ;nvram -p ; reboot"
+}
+
+nssh() {
+	ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@$@
 }
 sshcan() {
 echo "set timeout 5 \
