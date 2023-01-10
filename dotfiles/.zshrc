@@ -159,6 +159,8 @@ alias starskyf='gco rel/StarskyF'
 
 alias dls='cd ~/Downloads'
 alias xpe='xpath -e'
+alias tssAnalyze="/Users/gtelem/git/psr-tools/shared/tssAnalyzeAndUpload.py"
+
 # Git Checkout Radar
 gcr() {
 	git checkout eng/PR-$@
@@ -203,6 +205,14 @@ alias dmsu='cd ~/git/dPsr-tools/MobileSoftwareUpdate'
 alias dmdv='cd ~/git/dPsr-tools/MobileDevice'
 alias dlai='cd ~/git/dPsr-tools/libauthinstall'
 alias dlas='cd ~/git/dPsr-tools/libauthinstall'
+alias omsu='cd ~/git/iosota/MobileSoftwareUpdate'
+alias osus='cd ~/git/iosota/softwareupdateservices'
+alias osusui='cd ~/git/iosota/softwareupdateservicesui'
+alias oma='cd ~/git/iosota/mobileasset'
+alias osub='cd ~/git/iosota/softwareupdatebridge'
+alias osuc='cd ~/git/iosota/softwareupdatecontroller'
+alias oset='cd ~/git/iosota/softwareupdatesettings'
+alias cdmsu='cd MobileSoftwareUpdate'
 
 # NeRD stuff
 NERD_LOG_CMD="log stream --info --debug --filter 'process:\"nerd\"' --filter 'process:\"mobileassetd\"' --filter 'process:\"softwareupdated\"' --filter 'process:\"UpdateBrainService\"' | tee nerd.log"
@@ -233,13 +243,15 @@ alias nerdfilter="ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes
 
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
-alias bats="/AppleInternal/Applications/Scripts/bats build"
+alias fbats="/AppleInternal/Applications/Scripts/bats build"
+alias bats="/AppleInternal/Applications/Scripts/bats build --lane Basic"
 
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
 alias ihd="sudo green-restore --knox --install-tools"
 alias python3="/usr/local/bin/python3"
 alias l="less"
 alias psr='cd ~/git/psr-tools/'
+alias pshared='cd ~/git/psr-tools/shared/'
 alias ota='cd ~/git/iosota/'
 alias ibrew="arch -x86_64 /opt/homebrew/bin/brew"
 alias rmbc="rm -f **/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)"

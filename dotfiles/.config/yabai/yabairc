@@ -47,7 +47,7 @@ yabai -m config                                 \
 function setup_space {
     local idx="$1"
     local name="$1_$2"
-    local space=
+    local space=""
     echo "setup space $idx : $name"
 
     space=$(yabai -m query --spaces --space "$idx")
