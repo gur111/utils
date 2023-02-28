@@ -17,3 +17,5 @@ fi
 
 osascript -e 'quit app "Rectangle"'
 # open -a Rectangle
+
+

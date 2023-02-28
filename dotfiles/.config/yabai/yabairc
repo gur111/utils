@@ -9,7 +9,7 @@ sudo yabai --load-sa
 # global settings
 yabai -m config                                 \
     mouse_follows_focus          off             \
-    focus_follows_mouse          autofocus      \
+    focus_follows_mouse          off      \
     window_origin_display        default        \
     window_placement             second_child   \
     window_topmost               off            \
@@ -87,9 +87,11 @@ setup_space 20 space_whatsapp
 
 # Named displays
 # Built in display
-disp_ex1=$(yabai -m query --displays | jq '.[0].index')
-disp_ex2=$(yabai -m query --displays | jq '.[1].index')
-disp_mbp=$(yabai -m query --displays | jq '.[2].index')
+disp_ex1=$(yabai -m query --displays | jq 'map(select(.frame.x = 0))[0].index')
+disp_ex2=$(yabai -m query --displays | jq 'map(select(.frame.x > 0))[0].index')
+disp_mbp=$(yabai -m query --displays | jq 'map(select(.frame.x < 0))[0].index')
+# disp_mbp=$(yabai -m query --displays | jq 'map(select(.frame.w < 2500))[0].index')
+# disp_mbp=$(yabai -m query --displays | jq 'map(select(.frame.w < 2500))[0].index')
 # disp_ex1=$(yabai -m query --displays | jq 'map(select(.id == 1))[0].index')
 # disp_ex2=$(yabai -m query --displays | jq 'map(select(.id == 1))[0].index')
 # disp_mpb=$(yabai -m query --displays | jq 'map(select(.id != 1))[0].index')
@@ -100,19 +102,20 @@ disp_mbp=$(yabai -m query --displays | jq '.[2].index')
 
 
 # Move displays to right monitors
-yabai -m space 01_space_iterm       --display $disp_ex1
-yabai -m space 02_space_notes       --display $disp_mbp
-yabai -m space 03_space_radar       --display $disp_ex2
-yabai -m space 04_space_calendar    --display $disp_mbp
-yabai -m space 05_space_monitor     --display $disp_mbp
-yabai -m space 08_space_chrome      --display $disp_ex2
-yabai -m space 09_space_safari      --display $disp_ex2
-yabai -m space 20_space_music      --display $disp_mbp
-yabai -m space 11_space_code       --display $disp_ex1
-yabai -m space 12_space_xcode      --display $disp_ex1
-yabai -m space 13_space_finder     --display $disp_ex2
-yabai -m space 19_space_slack      --display $disp_mbp
-yabai -m space 20_space_whatsapp   --display $disp_mbp
+yabai -m space 01_space_iterm       --display $disp_ex2 &
+yabai -m space 02_space_notes       --display $disp_mbp &
+yabai -m space 03_space_radar       --display $disp_ex1 &
+yabai -m space 04_space_calendar    --display $disp_ex2 &
+yabai -m space 05_space_monitor     --display $disp_mbp &
+yabai -m space 08_space_chrome      --display $disp_ex1 &
+yabai -m space 09_space_safari      --display $disp_ex1 &
+yabai -m space 10_space_music       --display $disp_mbp &
+yabai -m space 11_space_code        --display $disp_ex1 &
+yabai -m space 12_space_xcode       --display $disp_ex1 &
+yabai -m space 13_space_finder      --display $disp_ex2 &
+yabai -m space 16_space_logs        --display $disp_ex1 &
+yabai -m space 19_space_slack       --display $disp_mbp &
+yabai -m space 20_space_whatsapp    --display $disp_mbp &
 
 # Assign apps to spaces
 yabai -m rule --add app="^iTerm"        space=01_space_iterm
@@ -127,6 +130,7 @@ yabai -m rule --add app="Word"          space=06_space_docs
 yabai -m rule --add app="Numbers"       space=06_space_docs
 yabai -m rule --add app="Excel"         space=06_space_docs
 yabai -m rule --add app="Omni"          space=06_space_docs
+yabai -m rule --add app="Keynote"       space=06_space_docs
 
 yabai -m rule --add app="Webex"         space=15_space_webex
 yabai -m rule --add app="Mail"          space=07_space_mail
@@ -135,14 +139,18 @@ yabai -m rule --add app="^Safari$"      space=09_space_safari
 yabai -m rule --add app="YouTube"       space=10_space_music
 yabai -m rule --add app="^Code$"        space=11_space_code
 yabai -m rule --add app="Xcode"         space=12_space_xcode
-yabai -m rule --add app="Finder"        space=14_space_finder
+yabai -m rule --add app="Finder"        space=13_space_finder
 yabai -m rule --add app="Purple"        space=14_space_ptb
 yabai -m rule --add app="Glide"         space=16_space_logs
 yabai -m rule --add app="^Slack$"       space=19_space_slack
 yabai -m rule --add app="^WhatsApp$"    space=20_space_whatsapp
-yabai -m rule --add app="CopyQ"         layout=float
+yabai -m rule --add app="CopyQ"         manage=off
+
+yabai -m space 16_space_logs            --layout stack
 
 
 echo "yabai configuration loaded.."
 
-echo "Loading sketchybar"
+echo "Reloading sketchybar"
+sketchybar --remove '/.*/'                                                                                                                                                                                    ─╯
+source $HOME/.config/sketchybar/sketchybarrc

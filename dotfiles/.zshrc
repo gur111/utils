@@ -7,6 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/Library/Python/3.8/bin:$HOME/Library/Android/sdk/platform-tools:$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$PATH
+#export PATH=$HOME/Library/Python/3.8/bin:$HOME/Library/Android/sdk/platform-tools:$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$HOME/pgit/yabai/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -151,11 +152,24 @@ alias grba='git rebase --abort'
 alias grbi='git rebase -i'
 alias grsh='git reset --hard'
 alias gro='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
+alias gdo='git diff origin/$(git rev-parse --abbrev-ref HEAD)'
+
+alias grbdb='git fetch && git rebase origin/rel/Dawnburst'
+alias grbdbb='git fetch && git rebase origin/rel/DawnburstB'
+alias grbdbc='git fetch && git rebase origin/rel/DawnburstC'
+alias grbdbd='git fetch && git rebase origin/rel/DawnburstD'
+alias grbdbe='git fetch && git rebase origin/rel/DawnburstE'
+alias grbdbf='git fetch && git rebase origin/rel/DawnburstF'
+
 alias gadd='git add'
 alias gap='git add -p'
 alias psrfetch='find $HOME/git/psr-tools -type d -depth 1 -exec git --git-dir={}/.git fetch \;'
+alias db='gco rel/Dawnburst'
+alias gcodb='gco rel/Dawnburst'
 alias sydro='gco rel/Sydro'
 alias starskyf='gco rel/StarskyF'
+
+alias k9='kill -9'
 
 alias dls='cd ~/Downloads'
 alias xpe='xpath -e'
@@ -212,6 +226,13 @@ alias oma='cd ~/git/iosota/mobileasset'
 alias osub='cd ~/git/iosota/softwareupdatebridge'
 alias osuc='cd ~/git/iosota/softwareupdatecontroller'
 alias oset='cd ~/git/iosota/softwareupdatesettings'
+alias domsu='cd ~/git/diosota/MobileSoftwareUpdate'
+alias dosus='cd ~/git/diosota/softwareupdateservices'
+alias dosusui='cd ~/git/diosota/softwareupdateservicesui'
+alias doma='cd ~/git/diosota/mobileasset'
+alias dosub='cd ~/git/diosota/softwareupdatebridge'
+alias dosuc='cd ~/git/diosota/softwareupdatecontroller'
+alias doset='cd ~/git/diosota/softwareupdatesettings'
 alias cdmsu='cd MobileSoftwareUpdate'
 
 # NeRD stuff
@@ -220,6 +241,7 @@ alias relayca='tcprelay --locationid 8414100 --portoffset 14000 ssh'
 alias relayb='tcprelay --locationid 8411100 --portoffset 13000 ssh'
 alias sshca1='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p14022'
 alias sshb='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p13022'
+alias sshfe='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p23022'
 alias nerdsend='mkdir -p ./usr/libexec/ && cp nerd ./usr/libexec/ && find ./usr/ | grep nerd | cpio -o --file ./nerd.cpgz -d && scp -o NoHostAuthenticationForLocalhost=yes nerd.cpgz root@appletv:~/. && ssh -o NoHostAuthenticationForLocalhost=yes root@appletv "darwinup install nerd.cpgz && killall -30 nerd && $NERD_LOG_CMD"'
 alias cpnerd='echo "nvram -s boot-command=recover ; nvram -s auto-boot=true ; nvram -s ota-outcome=fail ;nvram -p ; reboot" | pbcopy'
 nerdboot() {
@@ -257,6 +279,25 @@ alias ibrew="arch -x86_64 /opt/homebrew/bin/brew"
 alias rmbc="rm -f **/*(_(BACKUP|BASE|LOCAL|REMOTE)_*|.orig)"
 alias y='echo "You are too tired. Go to sleep. If you say \"yes\" to everything, what does yes even mean???....."'
 
+# Function to list files matching pattern and them prompt to remove
+function rmq {
+    ll *$1*
+    # Prompt y/N
+    echo -n "Remove files matching pattern? (y/N) "
+    read REPLY
+
+    # read "REPLY?Remove files matching pattern? (y/N) " -k
+    # Check answer
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        # Remove files matching pattern
+        echo "Removing files"
+        rm -f *$1*
+        echo "DONE"
+    else
+        echo "Not removing anything"
+    fi
+}
 
 # Android and ADB stuff
 
@@ -331,3 +372,6 @@ source $(brew --prefix nvm)/nvm.sh
 
 
 # Tmp aliases
+#### Added by green-restore install-tools
+autoload -Uz compinit && compinit
+####
