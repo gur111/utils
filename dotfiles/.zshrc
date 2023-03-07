@@ -120,6 +120,7 @@ alias suroot="sudo -E -s"
 alias netfix="sudo ifconfig wlo1 down;sudo ifconfig wlo1 up"
 alias zshreload='source ~/.zshrc'
 alias zshconfig="nano ~/.zshrc && source ~/.zshrc"
+alias utils="cd ~/pgit/utils/ && ll"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
 # NOT WORKING: alias gjoke=curl -s https://raw.githubusercontent.com/EugeneKay/git-jokes/lulz/Jokes.txt | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'
@@ -269,6 +270,7 @@ alias fbats="/AppleInternal/Applications/Scripts/bats build"
 alias bats="/AppleInternal/Applications/Scripts/bats build --lane Basic"
 
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
+alias nominatec='echo $(git log -1 --pretty=format:%s) && RADAR_ID=$(git branch --show-current | cut -d "-" -f 2) && echo "Submit radar $RADAR_ID? [y/N]" && read REPLY && echo && [[ $REPLY =~ ^[Yy]$ ]] && msu-sidebuild-nominate -r $RADAR_ID'
 alias ihd="sudo green-restore --knox --install-tools"
 alias python3="/usr/local/bin/python3"
 alias l="less"
@@ -345,7 +347,7 @@ export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/Applications/XcodeDb.app/Contents/Developer/Platforms/MacOSX.platform/usr/local/bin:$PATH"
-export PATH="$PATH:/opt"
+export PATH="/opt/homebrew/bin:$PATH"
 
 ramdisk() {
 	echo "Creating ramdisk"
