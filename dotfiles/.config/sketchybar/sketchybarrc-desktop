@@ -207,6 +207,16 @@ sketchybar  --add item      network right                       \
                             icon.width=30                       \
                             label.align=right
 
+sketchybar  --add item      network_iphone right                        \
+            --set network_iphone    label.font="$FONT_FACE:Bold:12.0"   \
+                                    label.padding_right=4               \
+                                    icon.font="$FONT_FACE:Bold:22.0"    \
+                                    update_freq=2                       \
+                                    script="$PLUGIN_DIR/network_iph.sh" \
+                                    label.width=53                      \
+                                    icon.width=50                       \
+                                    label.align=right
+
 
 # sketchybar  --add   event spotify_change $SPOTIFY_EVENT \
 #             --add   item spotify right \
