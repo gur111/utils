@@ -114,6 +114,7 @@ yabai -m space 11_space_code        --display $disp_ex1 &
 yabai -m space 12_space_xcode       --display $disp_ex1 &
 yabai -m space 13_space_finder      --display $disp_ex2 &
 yabai -m space 16_space_logs        --display $disp_ex1 &
+yabai -m space 17_space_unk17       --display $disp_mbp &
 yabai -m space 19_space_slack       --display $disp_mbp &
 yabai -m space 20_space_whatsapp    --display $disp_mbp &
 
@@ -138,6 +139,7 @@ yabai -m rule --add app="Chrome"        space=08_space_chrome
 yabai -m rule --add app="^Safari$"      space=09_space_safari
 yabai -m rule --add app="YouTube"       space=10_space_music
 yabai -m rule --add app="^Code$"        space=11_space_code
+yabai -m rule --add app="^PyCharm$"     space=11_space_code
 yabai -m rule --add app="Xcode"         space=12_space_xcode
 yabai -m rule --add app="Finder"        space=13_space_finder
 yabai -m rule --add app="Purple"        space=14_space_ptb
@@ -147,6 +149,8 @@ yabai -m rule --add app="^WhatsApp$"    space=20_space_whatsapp
 yabai -m rule --add app="CopyQ"         manage=off
 
 yabai -m space 16_space_logs            --layout stack
+yabai -m space 12_space_xcode           --layout stack
+yabai -m space 11_space_code            --layout stack
 
 
 echo "yabai configuration loaded.."

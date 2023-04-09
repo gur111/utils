@@ -81,8 +81,8 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-HISTSIZE=300000
-SAVEHIST=300000
+HISTSIZE=3000000
+SAVEHIST=3000000
 
 # User configuration
 
@@ -106,7 +106,8 @@ fi
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
+
+# Aliases
 export csl="gurt@csl3.cs.technion.ac.il"
 alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
 alias bison="/opt/homebrew/opt/bison/bin/bison"
@@ -124,6 +125,15 @@ alias utils="cd ~/pgit/utils/ && ll"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
 # NOT WORKING: alias gjoke=curl -s https://raw.githubusercontent.com/EugeneKay/git-jokes/lulz/Jokes.txt | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'
+
+## Yabai aliases
+alias byr='  brew services restart gur111/formulae/yabai'
+alias byoff='brew services stop gur111/formulae/yabai'
+alias byon=' brew services start gur111/formulae/yabai'
+alias ykill='brew services stop gur111/formulae/yabai ; killall yabai'
+alias yvon='screen -O -dmS yabai bash -c "yabai --verbose 2>&1 | tee ~/Downloads/yabai_$(date -v+10S +%Y-%m-%dT%H_%M_%S).log"'
+
+## Git aliases
 alias gpush='git push'
 alias gps='git push'
 alias gpull='git pull'
@@ -176,7 +186,7 @@ alias dls='cd ~/Downloads'
 alias xpe='xpath -e'
 alias tssAnalyze="/Users/gtelem/git/psr-tools/shared/tssAnalyzeAndUpload.py"
 
-# Git Checkout Radar
+## Git Checkout Radar
 gcr() {
 	git checkout eng/PR-$@
 }
@@ -208,7 +218,11 @@ alias rockets='git checkout gurt/rockets && git add . && git commit -m "Taking s
 alias emergency='rockets'
 alias code-red='rockets'
 
+
+# Repositories
 alias pgit='cd ~/pgit'
+
+## Apple repos
 alias ptb='cd ~/git/psr-tools/PurpleToolbox'
 alias msu='cd ~/git/psr-tools/MobileSoftwareUpdate'
 alias fdr='cd ~/git/psr-tools/libFDR'
@@ -252,6 +266,19 @@ nerdboot() {
 nssh() {
 	ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@$@
 }
+
+nsusdl() {
+#	set -e
+	REMOTE_DIR="/private/var/MobileSoftwareUpdate/MobileAsset/AssetsV2/com_apple_MobileAsset_SoftwareUpdate/dbcd3423c43b22b0a58e65f827fb494d69b8f98c.asset"
+	REMOTE_DIR_TMP="$REMOTE_DIR"
+	LOCAL_UPDATE_DIR_NAME="$2"
+	# Copy to device
+#	scp -r -P$1 -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes ~/Downloads/$LOCAL_UPDATE_DIR_NAME  root@localhost:$REMOTE_DIR_TMP
+	rsync -avzh --progress ~/Downloads/$LOCAL_UPDATE_DIR_NAME/ root@$3:$REMOTE_DIR_TMP
+#	nssh localhost -p$1 "setclass $REMOTE_DIR D  && chown -R mobile $REMOTE_DIR && test_software_update $REMOTE_DIR/AssetData -suspend"
+	nssh localhost -p$1 "setclass $REMOTE_DIR D && test_software_update $REMOTE_DIR/AssetData -suspend"
+}
+
 sshcan() {
 echo "set timeout 5 \
 set cmd [lrange $argv 1 end] \
