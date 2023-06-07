@@ -295,6 +295,12 @@ alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
 alias fbats="/AppleInternal/Applications/Scripts/bats build"
 alias bats="/AppleInternal/Applications/Scripts/bats build --lane Basic"
+alias fbatsc="fbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u gtelem --no-base-tag"
+alias batsc="fbatsc --lane Basic"
+alias fbatscd="fbatsc -b CurrentDawn"
+alias fbatscdb="fbatsc -b CurrentDawn+"
+
+alias glide-filter-current='/Applications/Glide.app/Contents/MacOS/clide export --debug  --last 10d -p "process=nerd or process~/.*(softwareupdate|SUSUI|brain|nanosubridge|sucontroller|livability|preferences|mobileassetd|network|launchd).*/ or library:softwareupdate or process=nesessionmanager or process:^springboard" system_logs.logarchive system_logs_SUSFull.glide'
 
 alias msu-sidebuild-nominate="/SWE/CoreOS/Images/CoreOSEmbeddedPlatformQA/assets/msu_sidebuild/tracking/code/msu-sidebuild-nominate"
 alias nominatec='echo $(git log -1 --pretty=format:%s) && RADAR_ID=$(git branch --show-current | cut -d "-" -f 2) && echo "Submit radar $RADAR_ID? [y/N]" && read REPLY && echo && [[ $REPLY =~ ^[Yy]$ ]] && msu-sidebuild-nominate -r $RADAR_ID'
