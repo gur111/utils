@@ -136,6 +136,7 @@ yabai -m rule --add app="Keynote"       space=06_space_docs
 yabai -m rule --add app="Webex"         space=15_space_webex
 yabai -m rule --add app="Mail"          space=07_space_mail
 yabai -m rule --add app="Chrome"        space=08_space_chrome
+yabai -m rule --add app="Edge"          space=08_space_chrome
 yabai -m rule --add app="^Safari$"      space=09_space_safari
 yabai -m rule --add app="YouTube"       space=10_space_music
 yabai -m rule --add app="^Code$"        space=11_space_code

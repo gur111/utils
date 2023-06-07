@@ -127,10 +127,10 @@ alias .=source
 # NOT WORKING: alias gjoke=curl -s https://raw.githubusercontent.com/EugeneKay/git-jokes/lulz/Jokes.txt | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'
 
 ## Yabai aliases
-alias byr='  brew services restart gur111/formulae/yabai'
-alias byoff='brew services stop gur111/formulae/yabai'
-alias byon=' brew services start gur111/formulae/yabai'
-alias ykill='brew services stop gur111/formulae/yabai ; killall yabai'
+alias byr='  brew services restart yabai'
+alias byoff='brew services stop yabai'
+alias byon=' brew services start yabai'
+alias ykill='brew services stop yabai ; killall yabai'
 alias yvon='screen -O -dmS yabai bash -c "yabai --verbose 2>&1 | tee ~/Downloads/yabai_$(date -v+10S +%Y-%m-%dT%H_%M_%S).log"'
 
 ## Git aliases
