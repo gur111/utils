@@ -366,6 +366,7 @@ psrgco() {
 	fi
 }
 
+alias signSel='defaults write com.apple.sear.acsign PreferredKeyResidency -string'
 
 bindkey -e
 bindkey '^H' backward-kill-word
@@ -404,7 +405,15 @@ source $(brew --prefix nvm)/nvm.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
+# Auto setup the correct signing method
+autoSelSigningMethod () {
+	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+		signSel remote
+	else
+		signSel SEP
+	fi
+}
+alias git='autoSelSigningMethod; /usr/bin/git'
 
 # Tmp aliases
 #### Added by green-restore install-tools
