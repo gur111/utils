@@ -108,8 +108,8 @@ fi
 #
 
 # Aliases
-export csl="gurt@csl3.cs.technion.ac.il"
-alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
+#export csl="gurt@csl3.cs.technion.ac.il"
+#alias csl3="ssh gurt@csl3.cs.technion.ac.il -t '/home/gurt/bin/zsh'"
 alias bison="/opt/homebrew/opt/bison/bin/bison"
 alias vact="source ./venv/bin/activate"
 alias lli="/opt/homebrew/opt/llvm/bin/lli"
@@ -124,6 +124,7 @@ alias zshconfig="nano ~/.zshrc && source ~/.zshrc"
 alias utils="cd ~/pgit/utils/ && ll"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
+alias m="man"
 # NOT WORKING: alias gjoke=curl -s https://raw.githubusercontent.com/EugeneKay/git-jokes/lulz/Jokes.txt | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'
 
 ## Yabai aliases
@@ -152,6 +153,7 @@ alias gstatus='git status'
 alias gfetch='git fetch'
 alias grm='git rm'
 alias gremote='git remote'
+alias grguo='git remote get-url origin'
 alias gdiff='git diff'
 alias gmt='git mergetool'
 alias grevert='git revert'
@@ -177,14 +179,17 @@ alias gap='git add -p'
 alias psrfetch='find $HOME/git/psr-tools -type d -depth 1 -exec git --git-dir={}/.git fetch \;'
 alias db='gco rel/Dawnburst'
 alias gcodb='gco rel/Dawnburst'
+alias gcodbb='gco rel/DawnburstB'
+alias gcodbc='gco rel/DawnburstC'
+alias gcodbe='gco rel/DawnburstE'
+alias gcodbf='gco rel/DawnburstF'
 alias sydro='gco rel/Sydro'
-alias starskyf='gco rel/StarskyF'
 
 alias k9='kill -9'
 
 alias dls='cd ~/Downloads'
 alias xpe='xpath -e'
-alias tssAnalyze="/Users/gtelem/git/psr-tools/shared/tssAnalyzeAndUpload.py"
+alias tssAnalyze="/Users/$(whoami)/git/psr-tools/shared/tssAnalyzeAndUpload.py"
 
 ## Git Checkout Radar
 gcr() {
@@ -293,9 +298,9 @@ alias nerdfilter="ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes
 
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
-alias fbats="/AppleInternal/Applications/Scripts/bats build"
+alias fbats='/AppleInternal/Applications/Scripts/bats build'
 alias bats="/AppleInternal/Applications/Scripts/bats build --lane Basic"
-alias fbatsc="fbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u gtelem --no-base-tag"
+alias fbatsc='fbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami) --no-base-tag'
 alias batsc="fbatsc --lane Basic"
 alias fbatscd="fbatsc -b CurrentDawn"
 alias fbatscdb="fbatsc -b CurrentDawn+"
@@ -341,9 +346,10 @@ alias set-install-cert-check='adb shell settings put global verifier_verify_adb_
 
 fixKnfs () {
 	kdestroy -A
-	appleconnect signOut --realm=APPLECONNECT.APPLE.COM —account=gtelem
-	appleconnect authenticate --realm=APPLECONNECT.APPLE.COM —account=gtelem
-	kinit --renewable gtelem@APPLECONNECT.APPLE.COM
+	#appleconnect signOut --realm=APPLECONNECT.APPLE.COM —account=$(whoami)
+	appleconnect authenticate --realm=APPLECONNECT.APPLE.COM —account=$(whoami)
+	kinit --renewable $(whoami)@APPLECONNECT.APPLE.COM
+	kinit $(whoami)@OD.APPLE.COM
 	sudo automount -vc
 	sudo killall opendirectoryd
 }
