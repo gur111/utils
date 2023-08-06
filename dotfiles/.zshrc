@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/Library/Python/3.8/bin:$HOME/Library/Android/sdk/platform-tools:$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$PATH
+export PATH=/opt/homebrew/Cellar/nano/7.2/bin/:$HOME/Library/Python/3.8/bin:$HOME/Library/Android/sdk/platform-tools:$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$PATH
 #export PATH=$HOME/Library/Python/3.8/bin:$HOME/Library/Android/sdk/platform-tools:$HOME/bin:/AppleInternal/usr/local/bin:/usr/local/bin:$HOME/pgit/yabai/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -405,7 +405,7 @@ export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source $(brew --prefix nvm)/nvm.sh
+#source $(brew --prefix nvm)/nvm.sh
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
