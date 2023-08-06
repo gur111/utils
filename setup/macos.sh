@@ -76,6 +76,12 @@ echo "Installing iTerm2"
 curl https://iterm2.com/downloads/stable/latest -L -qq --output ~/Downloads/iTerm2.zip
 unzip ~/Downloads/iTerm2.zip -d /Applications
 
+# 1Password
+echo "Installing 1Password"
+curl https://downloads.1password.com/mac/1Password.zip -L -qq --output ~/Downloads/1password.zip
+unzip ~/Downloads/1password.zip -d /Applications
+open "/Applications/1Password Installer.app"
+
 # Typora
 echo "Installing Typora (you'd still need to activate it"
 curl https://download.typora.io/mac/Typora.dmg -L -qq --output ~/Downloads/Typora.dmg
