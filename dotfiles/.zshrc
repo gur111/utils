@@ -227,8 +227,10 @@ alias code-red='rockets'
 # Repositories
 alias pgit='cd ~/pgit'
 
-## Apple repos
+## Apple repos & alises
+alias sshsim='ssh -p 24832 -i ~/.simcloud/id_rsa'
 alias ptb='cd ~/git/psr-tools/PurpleToolbox'
+alias prp='cd ~/git/psr-tools/PurpleReverseProxy'
 alias msu='cd ~/git/psr-tools/MobileSoftwareUpdate'
 alias fdr='cd ~/git/psr-tools/libFDR'
 alias mdv='cd ~/git/psr-tools/MobileDevice'
@@ -262,7 +264,106 @@ alias relayb='tcprelay --locationid 8411100 --portoffset 13000 ssh'
 alias sshca1='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p14022'
 alias sshb='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p13022'
 alias sshfe='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p23022'
-alias nerdsend='mkdir -p ./usr/libexec/ && cp nerd ./usr/libexec/ && find ./usr/ | grep nerd | cpio -o --file ./nerd.cpgz -d && scp -o NoHostAuthenticationForLocalhost=yes nerd.cpgz root@appletv:~/. && ssh -o NoHostAuthenticationForLocalhost=yes root@appletv "darwinup install nerd.cpgz && killall -30 nerd && $NERD_LOG_CMD"'
+#alias nerdsend='mkdir -p ./usr/libexec/ ./usr/local/bin/ && cp nerd ./usr/libexec/ && cp nerdctl ./usr/local/bin/ && find usr/ | grep nerd | cpio -o --file ./nerd.cpgz -d && scp -o NoHostAuthenticationForLocalhost=yes nerd.cpgz root@n199.esc:~/. && ssh -o NoHostAuthenticationForLocalhost=yes root@n199.esc "darwinup install nerd.cpgz && killall -9 nerd && $NERD_LOG_CMD"'
+nerdsend () {
+	mkdir -p ./usr/libexec/ ./usr/local/bin/
+	cp nerd ./usr/libexec/
+	cp nerdctl ./usr/local/bin/
+	find usr/ | grep nerd | cpio -o --file ./nerd.cpgz -d
+	scp -o NoHostAuthenticationForLocalhost=yes nerd.cpgz root@$1:~/
+	ssh -o NoHostAuthenticationForLocalhost=yes root@$1 "darwinup install nerd.cpgz && killall -30 nerd && $NERD_LOG_CMD"
+}
+
+exit_no_argv () {
+	if [ $# -eq 0 ]
+	then
+		echo "No arguments supplied"
+		exit -1
+	fi
+}
+
+nerdlog () {
+	exit_no_argv $@
+	LOG_FILE=tmp.log
+	LOCAL_NERD_LOG_FILE=nerd_log_$(date -v+10S +%Y-%m-%dT%H_%M_%S).log
+	echo "Logging to $LOCAL_NERD_LOG_FILE from $1"
+	rm -f ./nerd_curr.log
+	touch ./$LOCAL_NERD_LOG_FILE
+	ln -s ./$LOCAL_NERD_LOG_FILE ./nerd_curr.log
+	echo "Files:"
+	ll
+	#### nssh $1 "log stream --info --debug 2>&1 | tee $LOG_FILE | grep nerd"
+	nssh $1 "log stream --info --debug 2>&1" > $LOCAL_NERD_LOG_FILE 2>/dev/null || echo "...Stopped"
+	echo "Done logging." # Copying from $1 to ./$LOCAL_NERD_LOG_FILE"
+	#scp root@$1:$LOG_FILE ./$LOCAL_NERD_LOG_FILE 2>/dev/null
+	echo "Opening locally saved log"
+	open ./$LOCAL_NERD_LOG_FILE
+}
+
+nerdkilllog () {(
+	set -e
+	exit_no_argv $@
+	echo "Killing nerd process on $1"
+	nssh $1 "killall -9 nerd"
+	set +e
+	nerdlog $@
+	set -e
+)}
+
+nerdsendlog () {(
+	set -e
+	exit_no_argv $@
+	echo platform is $PLATFORM
+	echo "Copying $2 to $1"
+	scp -r $2 root@$1:/
+	nerdkilllog $@
+)}
+
+nerdbuild () {
+	exit_no_argv $@
+	USR_DIR=""
+	PLATFORM=watchOS
+
+	if [[ "$1" != "" ]] then
+		echo "Setting non-default platform: $1"
+		PLATFORM=$1
+	fi
+
+	echo "Will build nerdctl (and its dependencies which includes nerd) for platform: $PLATFORM."
+	echo "Must execute from the InstallIntermediates directory. Continue (Y/n)?"
+	read REPLY
+	# Check answer
+	if [[ $REPLY =~ ^[Nn]$ ]]
+	then
+		echo "Aborting"
+		exit -1
+	else
+		
+		INST_PRODS=$(echo $PLATFORM | sed -E 's/iOS/iphoneos/' | tr '[:upper:]' '[:lower:]')/InstallableProducts
+		PREV_DIR=$(pwd)
+		echo "Changing dir to: $INST_PRODS"
+		cd $INST_PRODS
+		echo "Building nerdctl for $PLATFORM (log in ./build.log)"
+		xcrun xcodebuild -workspace ~/git/SUIT\ Projects\ -\ GurT.xcworkspace -scheme nerdctl -destination generic/platform=$PLATFORM > build.log
+		echo "Build finished. Creating roots from './usr'"
+		ROOT_FILE_NAME=nerd_roots_tmp_$PLATFORM.cpgz
+		ROOT_LOCATION=$PREV_DIR/$ROOT_FILE_NAME
+		USR_DIR=$(grealpath --relative-to=$PREV_DIR usr)
+		find usr | cpio -o | gzip -q -9 -c  > $ROOT_LOCATION
+		echo "Roots created in $ROOT_LOCATION. Going back to previous dir"
+		cd $PREV_DIR
+		echo "Root is ./$ROOT_FILE_NAME"
+	fi
+}
+
+nerdbuildlog () {(
+	set -e
+	exit_no_argv $@
+
+	nerdbuild $2
+	nerdsendlog $1 $USR_DIR
+)}
+
 alias cpnerd='echo "nvram -s boot-command=recover ; nvram -s auto-boot=true ; nvram -s ota-outcome=fail ;nvram -p ; reboot" | pbcopy'
 nerdboot() {
         ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@$@ "nvram -s boot-command=recover ; nvram -s auto-boot=true ; nvram -s ota-outcome=fail ;nvram -p ; reboot"
@@ -425,3 +526,6 @@ alias git='autoSelSigningMethod; /usr/bin/git'
 #### Added by green-restore install-tools
 autoload -Uz compinit && compinit
 ####
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
