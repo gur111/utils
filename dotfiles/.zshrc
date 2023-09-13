@@ -125,6 +125,7 @@ alias utils="cd ~/pgit/utils/ && ll"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
 alias m="man"
+alias isssh='echo $SSH_TTY'
 # NOT WORKING: alias gjoke=curl -s https://raw.githubusercontent.com/EugeneKay/git-jokes/lulz/Jokes.txt | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'
 
 ## Yabai aliases
