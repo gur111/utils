@@ -184,7 +184,21 @@ alias gcodbb='gco rel/DawnburstB'
 alias gcodbc='gco rel/DawnburstC'
 alias gcodbe='gco rel/DawnburstE'
 alias gcodbf='gco rel/DawnburstF'
-alias sydro='gco rel/Sydro'
+alias gcodbg='gco rel/DawnburstG'
+alias cg='gco rel/Crystalglow'
+alias cgb='gco rel/CrystalglowB'
+alias cgc='gco rel/CrystalglowC'
+alias cgd='gco rel/CrystalglowD'
+alias cge='gco rel/CrystalglowE'
+alias cgf='gco rel/CrystalglowF'
+alias cgg='gco rel/CrystalglowG'
+alias gcocg=cg
+alias gcocgb=cgb
+alias gcocgc=cgc
+alias gcocgd=cgd
+alias gcocge=cge
+alias gcocgf=cgf
+alias gcocgg=cgg
 
 alias k9='kill -9'
 
@@ -401,11 +415,32 @@ alias nerdfilter="ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes
 alias occ="gcc -framework Foundation"
 alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
 alias fbats='/AppleInternal/Applications/Scripts/bats build'
+alias ffbats='/AppleInternal/Applications/Scripts/bats build --lane Fast'
 alias bats="/AppleInternal/Applications/Scripts/bats build --lane Basic"
 alias fbatsc='fbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami) --no-base-tag'
+alias ffbatsc='ffbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami) --no-base-tag'
 alias batsc="fbatsc --lane Basic"
 alias fbatscd="fbatsc -b CurrentDawn"
 alias fbatscdb="fbatsc -b CurrentDawn+"
+alias fbatscdbb="fbatsc -b CurrentDawnB+"
+alias fbatscdbc="fbatsc -b CurrentDawnC+"
+alias fbatscdbd="fbatsc -b CurrentDawnD+"
+alias fbatscdbe="fbatsc -b CurrentDawnE+"
+alias fbatscdbf="fbatsc -b CurrentDawnF+"
+alias fbatscc="fbatsc -b CurrentCrystal"
+alias fbatsccb="fbatsc -b CurrentCrystalB"
+alias fbatsccc="fbatsc -b CurrentCrystalC"
+alias fbatsccd="fbatsc -b CurrentCrystalD"
+alias fbatscce="fbatsc -b CurrentCrystalE"
+alias fbatsccf="fbatsc -b CurrentCrystalF"
+alias fbatsccg="fbatsc -b CurrentCrystalG"
+alias fbatsccg="fbatsc -b CurrentCrystal+"
+alias fbatsccgb="fbatsc -b CurrentCrystalB+"
+alias fbatsccgc="fbatsc -b CurrentCrystalC+"
+alias fbatsccgd="fbatsc -b CurrentCrystalD+"
+alias fbatsccge="fbatsc -b CurrentCrystalE+"
+alias fbatsccgf="fbatsc -b CurrentCrystalF+"
+alias fbatsccgg="fbatsc -b CurrentCrystalG+"
 
 alias glide-filter-current='/Applications/Glide.app/Contents/MacOS/clide export --debug  --last 10d -p "process=nerd or process~/.*(softwareupdate|SUSUI|brain|nanosubridge|sucontroller|livability|preferences|mobileassetd|network|launchd).*/ or library:softwareupdate or process=nesessionmanager or process:^springboard" system_logs.logarchive system_logs_SUSFull.glide'
 
@@ -527,6 +562,6 @@ alias git='autoSelSigningMethod; /usr/bin/git'
 #### Added by green-restore install-tools
 autoload -Uz compinit && compinit
 ####
-
+export PATH="/Users/gtelem/Library/Python/3.9/bin:$PATH"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
