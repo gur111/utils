@@ -420,27 +420,34 @@ alias bats="/AppleInternal/Applications/Scripts/bats build --lane Basic"
 alias fbatsc='fbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami) --no-base-tag'
 alias ffbatsc='ffbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami) --no-base-tag'
 alias batsc="fbatsc --lane Basic"
-alias fbatscd="fbatsc -b CurrentDawn"
-alias fbatscdb="fbatsc -b CurrentDawn+"
-alias fbatscdbb="fbatsc -b CurrentDawnB+"
-alias fbatscdbc="fbatsc -b CurrentDawnC+"
-alias fbatscdbd="fbatsc -b CurrentDawnD+"
-alias fbatscdbe="fbatsc -b CurrentDawnE+"
-alias fbatscdbf="fbatsc -b CurrentDawnF+"
-alias fbatscc="fbatsc -b CurrentCrystal"
-alias fbatsccb="fbatsc -b CurrentCrystalB"
-alias fbatsccc="fbatsc -b CurrentCrystalC"
-alias fbatsccd="fbatsc -b CurrentCrystalD"
-alias fbatscce="fbatsc -b CurrentCrystalE"
-alias fbatsccf="fbatsc -b CurrentCrystalF"
-alias fbatsccg="fbatsc -b CurrentCrystalG"
-alias fbatsccg="fbatsc -b CurrentCrystal+"
-alias fbatsccgb="fbatsc -b CurrentCrystalB+"
-alias fbatsccgc="fbatsc -b CurrentCrystalC+"
-alias fbatsccgd="fbatsc -b CurrentCrystalD+"
-alias fbatsccge="fbatsc -b CurrentCrystalE+"
-alias fbatsccgf="fbatsc -b CurrentCrystalF+"
-alias fbatsccgg="fbatsc -b CurrentCrystalG+"
+# Array with all the suffixes
+iosTrainSuffixes=(d c b)
+iosTrains=(Dawn Crystal Borealis)
+minorReleaseTrainSuffixes=('' B C D E F G)
+batsCmds=(batsc fbatsc ffbatsc)
+trainCombs=('+' '')
+
+# Iterate over the BATS_CMDS
+for cmd in ${batsCmds[@]}
+do
+    # for ((iosInd = 1; i <= $#iosTrainSuffixes; i++))
+    for iosInd in {1..$#iosTrainSuffixes}
+    do
+        for minorLetterSuffix in ${minorReleaseTrainSuffixes[@]}
+        do
+            for trainCombInd in {1..$#trainCombs}
+            do
+                trainComb=$trainCombs[$trainCombInd]
+                # echo index is $iosInd out of $#iosTrainSuffixes
+                iosSuffix="$iosTrainSuffixes[$iosInd]"
+                iosTrain="$iosTrains[$iosInd]"
+                cmdStr="$cmd -b Current$iosTrain$minorLetterSuffix$trainComb"
+                # echo alias $cmd$iosSuffix$minorLetterSuffix="$cmdStr"
+                alias $cmd$iosSuffix$minorLetterSuffix$trainComb="$cmdStr"
+            done
+        done
+    done
+done
 
 alias glide-filter-current='/Applications/Glide.app/Contents/MacOS/clide export --debug  --last 10d -p "process=nerd or process~/.*(softwareupdate|SUSUI|brain|nanosubridge|sucontroller|livability|preferences|mobileassetd|network|launchd).*/ or library:softwareupdate or process=nesessionmanager or process:^springboard" system_logs.logarchive system_logs_SUSFull.glide'
 
