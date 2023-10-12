@@ -417,8 +417,8 @@ alias cpssh="cat ~/.ssh/id_rsa.pub| pbcopy"
 alias fbats='/AppleInternal/Applications/Scripts/bats build'
 alias ffbats='/AppleInternal/Applications/Scripts/bats build --lane Fast'
 alias bats="/AppleInternal/Applications/Scripts/bats build --lane Basic"
-alias fbatsc='fbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami) --no-base-tag'
-alias ffbatsc='ffbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami) --no-base-tag'
+alias fbatsc='fbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami)'
+alias ffbatsc='ffbats -p ${PWD##*/}:$(git branch --show-current) --infer-radars -u $(whoami)'
 alias batsc="fbatsc --lane Basic"
 # Array with all the suffixes
 iosTrainSuffixes=(d c b)
