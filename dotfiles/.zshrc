@@ -126,6 +126,10 @@ alias ohmyzsh="nano ~/.oh-my-zsh"
 alias .=source
 alias m="man"
 alias isssh='echo $SSH_TTY'
+function latestRecodingToMP4() {
+echo "Using ffmpeg '$0 <converted_name>' will convert the latest \"~/Desktop/Screen Recording *\" file to ~/Downloads/<converted_name>.mp4"
+ffmpeg -i "$(ls -t1 ~/Desktop/Screen\ Recording\ * | head -n 1)" -filter:v fps=20 -f mp4 "/Users/$(whoami)/Downloads/$1.mp4"
+}
 # NOT WORKING: alias gjoke=curl -s https://raw.githubusercontent.com/EugeneKay/git-jokes/lulz/Jokes.txt | awk 'BEGIN { srand() } int(rand() * NR) == 0 { x = $0 } END { print x }'
 
 ## Yabai aliases
