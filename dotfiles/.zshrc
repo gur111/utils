@@ -250,6 +250,7 @@ alias pgit='cd ~/pgit'
 
 ## Apple repos & alises
 alias sshsim='ssh -p 24832 -i ~/.simcloud/id_rsa'
+alias cug=' cd ~/git/CoreUtils'
 alias ptb='cd ~/git/psr-tools/PurpleToolbox'
 alias prp='cd ~/git/psr-tools/PurpleReverseProxy'
 alias msu='cd ~/git/psr-tools/MobileSoftwareUpdate'
@@ -285,12 +286,19 @@ alias relayb='tcprelay --locationid 8411100 --portoffset 13000 ssh'
 alias sshca1='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p14022'
 alias sshb='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p13022'
 alias sshfe='ssh -o NoHostAuthenticationForLocalhost=yes -o UseKeychain=yes root@localhost -p23022'
+alias koko='nanocom -d /dev/cu.koko-*-ch-0'
+alias chimp='nanocom -d /dev/cu.chimp-*-ch-0'
+alias nkoko='nanocom -d /dev/cu.koko-*'
+alias nchimp='nanocom -d /dev/cu.chimp-*'
+alias kanzi='nanocom -d /dev/cu.kanzi-*'
+alias koba='nanocom -d /dev/cu.koba-*'
 #alias nerdsend='mkdir -p ./usr/libexec/ ./usr/local/bin/ && cp nerd ./usr/libexec/ && cp nerdctl ./usr/local/bin/ && find usr/ | grep nerd | cpio -o --file ./nerd.cpgz -d && scp -o NoHostAuthenticationForLocalhost=yes nerd.cpgz root@n199.esc:~/. && ssh -o NoHostAuthenticationForLocalhost=yes root@n199.esc "darwinup install nerd.cpgz && killall -9 nerd && $NERD_LOG_CMD"'
 nerdsend () {
 	mkdir -p ./usr/libexec/ ./usr/local/bin/
 	cp nerd ./usr/libexec/
 	cp nerdctl ./usr/local/bin/
-	find usr/ | grep nerd | cpio -o --file ./nerd.cpgz -d
+	find ./ | grep -e nerd -e SetupKit | cpio -o --file ./nerd.cpgz -d
+	#find System/ | grep -e SetupKit | cpio -o --file ./nerd.cpgz -d
 	scp -o NoHostAuthenticationForLocalhost=yes nerd.cpgz root@$1:~/
 	ssh -o NoHostAuthenticationForLocalhost=yes root@$1 "darwinup install nerd.cpgz && killall -30 nerd && $NERD_LOG_CMD"
 }
